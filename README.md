@@ -22,7 +22,7 @@ Its the old version
 
 **Link: https://youtu.be/WcLmCGmUJv0**
 ### Menu
-![](img\2022-04-10-19-48-20.png)
+![](img/2022-04-10-19-48-20.png)
 
 Number 1: to get the list of deck cards
 
@@ -51,7 +51,7 @@ You can get a deck link at the https://www.masterduelmeta.com/top-decks
 
 Return to Macro and run option 2. You must click in search bar and in "first card" when the program asks.
 
-![](img\2022-04-10-19-49-03.png)
+![](img/2022-04-10-19-49-03.png)
 
 After that you have 3 seconds to return to the game screen and do not move the mouse while the macro runs
 
