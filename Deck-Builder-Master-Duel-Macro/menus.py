@@ -1,42 +1,83 @@
 import botdeck
+from pyautogui import alert,prompt
+import os
+import pyglet
+
+
+def set_language():
+    lang=prompt("""
+    Language:
+    en (Default)
+    es
+    fr
+    de
+    it
+    pt
+    
+    Your Choice:""")
+    dir = pyglet.resource.get_settings_path('YGO')
+    filename = os.path.join(dir, 'config.ini')
+    f = open(filename, "w")
+    f.write(lang)
+    f.close()
+    return lang
+
+
+def init_language():
+    dir = pyglet.resource.get_settings_path('YGO')
+    if not os.path.exists(dir):
+        os.makedirs(dir)
+    filename = os.path.join(dir, 'config.ini')
+    if not os.path.exists(filename):
+        f = open(filename, "w")
+        f.write("en")
+        f.close()
+    f =  open(filename, "r")
+    lines = f.readlines()
+    lang = lines[0]
+    return lang
 
 
 def main_menus():
-
-    """This function only manages deck() and Macro_deck() functions"""
-
+    LANG=init_language()
     botdeck.init()
 
     while True:
         try:
-            resposta = int(input("""
-    Welcome to MACRO-TXT YU GI OH MASTER DUEL!!!
-    Version 0.0001v
+            resposta = prompt("""
+    Welcome to MACRO YU GI OH MASTER DUEL!!!
+    Version 0.2v
     
     What do you want to do?
     1 - Get the list of cards and amount of a deck
     2 - Automatically build a deck using the Macro
-    3 - Quit
+    3 - Set language
+    4 - Quit
     
-    Your Choice:"""))
-            print("\n" * 100)
-
+    Your Choice:""",title='Languge:{}'.format(LANG))
+            
+            if not resposta:
+                break
+            resposta = int(resposta)
             if resposta > 3:
-                print("\n" * 100)
-                print("\n\n\n\n\33[31mJust numbers in between 1 and 3. Please\33[m")
+                alert("Just numbers in between 1 and 3. Please")
 
             if resposta == 1:
-                botdeck.deck(True)
-                botdeck.sleep(3)
+                botdeck.deck(True,LANG)
 
             elif resposta == 2:
-                botdeck.macro_deck()
+                botdeck.macro_deck(LANG)
                 botdeck.sleep(3)
-
             elif resposta == 3:
+                LANG=set_language()
+                
+
+            elif resposta == 4:
+                break
+            else:
                 break
 
-        except:
+        except Exception as e:
 
-            print("\n" * 100)
+            print(e)
             print("\n\n\n\n\33[31mInvalid data!\nPlease, just numbers in between 1 and 3..\33[m")

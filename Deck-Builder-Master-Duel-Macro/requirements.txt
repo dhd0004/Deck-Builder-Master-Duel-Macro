@@ -1,0 +1,7 @@
+keyboard
+requests
+b64
+colorama
+pyautogui
+pynput
+pyglet
